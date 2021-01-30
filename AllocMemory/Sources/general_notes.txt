@@ -1,0 +1,171 @@
+Number Systems:
+	-binary (base 2)
+		-each bit is 1^2*x. x increments one for every bit
+		-usually prefixed with 0b
+	-Hex (base 10)
+		-123456789ABCDEF
+		-each digit multiplies by n^16*x. X is incremented for each digit
+		-then add each digit together
+		-usually prefixed with 0x
+	-Assembly Tools
+		-Assembly source code is "assembled" by ARM Assembler
+			-sort of like al compiler
+		-assembled into Object file
+		-Linker used to create exectuable
+	-Commands
+		-differ from Intel and ARM
+		-diff in 32 and 64 bit
+		-ADD for add
+		-STRH store hald word
+		-B branch
+	-Syntax
+		-Instructions (lines) have 4 fields
+			-label
+				-optional. used to find position
+			-opcode
+				-specifies processor operation to perform
+			-operand;
+				-specifies source/dest of data to be processed
+			-comment			
+				optional
+			-ex 
+				-store_routine STR R0, [R1] ; comment
+
+Arm Design and RISC philosohy:
+		-RISC of Reduced Instuction Set Computer
+			-used by ARM
+		-CISC Complex Instuction Set Computer
+			-Used by Intel
+		-ARM tried to balance size and efficneicy of code 
+	-Embeded devices consist of processor, controller, perpherals and
+		a bus
+		-two tyes of components connected to Bus
+			-Bus master (processor)
+			-Bus slave (peripherals)
+		-two architecure levels
+			-physical level
+			-protocol level
+		-bus architecture for AMR is AMBA, ASB, APB and AHB
+			-AHB is high performace (higher clock frequencies)
+	-Memory	
+		-types
+			-ROM (read-only mem)
+			-Flash Rom (can be read and wrtiten)
+			-Dram(dyanimc ram) is lowest cost per memory
+			-SRAM(static ram) runs at higher clock rate
+			-EEPROM(read and write)
+		-flash 0x00000000
+		-eeprom 0x00100000
+		-sram 0x40000000
+		-SFR(special function register) 0xFFFFFFFF
+	-Peripherals
+		-all are memory mapped
+		-mem controller and interrupt controllers
+	-Von Neumann Architecutree and Harvard Architecture
+		
+Programmers Model
+	-Data Types
+		-Byte = 8 bits
+		-halfword = 16 bits
+		-Word = 32 bits
+	-ARM7TDMI Registers
+		-a register is a storage inside of processor core
+		-ARM have a number of register to perform processing and control
+		-grouped in register bank
+		-R0-R12 general purpose registers
+		-R13 is stack pointer. top element of stack
+		-R14 is link register and is used to return laocation of functions
+		-R15(pc) is program counter. Read and write
+		-CSPR
+	-modes
+		-10000 User mode
+		-10001 FIQ mode
+		-10010 IRQ mode
+		-10011 Supervisor mode
+		-10111 Abort mode
+		-11011 Undefined mode
+		-11111 System mode
+	-ARM Cortex Registers
+		-17 General Pupose registers
+		-1 status register
+		-3 Interrupt mask registers
+	-PSR bit fields
+		-N negative flag
+		-Z Zero flag
+		-C Carry flag
+		-V Overflow 
+		-Q Sticky Satuation
+		-GE[3:0] greater than or equal to flag
+		-ICI/TI Interupt Continue
+		-T thumb bit
+		-Exception Number indicates exception
+	-ARM data flow model
+		-
+	-Pipline:
+		-Fetch: loads an instruction from memory 
+		-Decode: Indetifies the instruction
+		-Execute: Processes intrctuion and writes back to register
+ARM Family:
+	-ARM7
+	-ARM9
+	-ARM11
+	-Cortex-A
+		-a stands for applictaion.Smart phones and tablets. High Processing power. large caches
+	-Cortex-R
+		-R stands for realtime. More Mechanical
+	-Cortex-M
+		-M stands for microcontroller. Everday embeded systems
+			-M0 low power
+			-
+	Summary:
+		-ARM contructed of 8 units
+			-ALU
+			-barrell shifter
+			-incrementer
+			-address register
+			-MAC
+			-instruction decoder
+			-sign extend
+			-register file
+Assembler rules and directives:
+	-first line is driectives.
+		-ex.
+			-Area FFT CODE, READONLY
+	-second line mark ENTRY
+	-third line set up paramters
+Frequntly use directives:
+	-Thumb: palced at top of file to specify code is generated with thumb instrcutions
+	-CODE: denotes section for machine isntructions
+	-DATA: Dentoes section for global varaiables
+	-AREA: intructs assembler to assemble new data section 
+	-SPACE: Reserves bolck of memeory
+Operators:
+	-Raspi use GCC compiler
+	
+Differnces between Raspi and Kiel
+	-comments are @ or //
+	-labels followed by :
+-Assembly on Raspi
+	-vim prgram.s
+	-assemble with $as -o program.o program.s
+	-Link $ld -o program program.o
+	-run $ ./program
+	-assemble with floating point $ as -mfpu=vpf -g -o program1.o program1.s
+	-Termination of program(dont do this with Raspi
+		-MOV R7, #1
+		 SVC 0	
+Debugging with GDB
+	-assemble with debug options
+		-$as -g -o program1.o program1.s
+		-ld -o program1.o program1
+		-gdb program1
+	-GNU debugger commands
+		-q quit
+		-l list
+		-b break
+		-r run
+		-ir info registers
+		-disas disassemble
+		-stepi
+		-c continue
+		-x examine
