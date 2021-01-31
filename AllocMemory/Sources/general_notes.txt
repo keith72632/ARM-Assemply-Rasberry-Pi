@@ -169,3 +169,15 @@ Debugging with GDB
 		-stepi
 		-c continue
 		-x examine
+Load and Store:
+	LOAD	STORE	Size and type
+	
+	LDR	STR	32-bits
+	LDRB	STRB	8-bits(byte)
+	LDRH	STRH	16-bits(halfword)
+	LDRSH		signed halword
+	LDM	SDM	Multiple words
+
+	Load: Take value from memory and write to register
+	Store: Read value from register and write to memory
+	
