@@ -1,0 +1,40 @@
+Raspi Assembly notes:
+
+bit: 0 or 1
+nibble: 4 bits
+byte: 8 bits
+word: 32 bits
+
+cpu:
+	-16 registers. word of data each
+	-0-12 geneeral purpose
+	-13 pointer to active stack. put data on stack
+	-14 link register
+	-15 pc (program counter)
+	-cpsr
+Base 16
+	-easier to read than binary
+	-
+Instructions
+	<instruction(mov, add etc)> <destination(register)>, <Operand>, <operand(numbers or registers)>
+	-add and sub can be done on one line. ex sub r0, r1, 0xA. this subtracts 0xA from value in r1 and
+	store it in r0
+	-mul numbers have to have its own register. ex r0, r1, r2. r1 and r2 multiplies and stored in r0
+	-mla(multiply with accumulate) ex mla r0, r1, r2, r3. r1 and r2 are mutlipled. then r3 is ADDED 
+	to the result of r1 and r2, then total stored in r0
+Branching:
+	-jumps to differetn parts when certain conditions are met
+	-b then label
+		-ex.
+		mov r0, 0x14
+		b _other
+		mov r0, 0x01
+
+		_other:
+			mov r7, #1;
+			swi 0 	
+compare:
+	cmp r1, r2. subtracts r2 from r1
+	beq == branch if equal
+	bgt == branch if greater than
+	
