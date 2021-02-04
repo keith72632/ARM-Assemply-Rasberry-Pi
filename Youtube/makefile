@@ -3,4 +3,4 @@ asmtut: asmtut.o
 asmtut.o: asmtut.s
 	as -o asmtut.o asmtut.s
 clean:
-	rm *.o asmtut
+	rm *.o asmtut 

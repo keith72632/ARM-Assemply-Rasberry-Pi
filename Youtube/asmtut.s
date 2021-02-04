@@ -1,20 +1,14 @@
-.text 
 .global _start
-
 _start:
-	mov r1, #11
-	mov r2, #10
-	cmp r1, r2
-	beq vals_equal
-	bgt r1_gt
-r1_lt:
-	mov r0, #2
-	b end
-r1_gt:
-	mov r0, #3
-vals_equal:
+	mov r1, #9 @1001
+	mov r2, #9 @1000
+	tst r1, r2@uses and operator to test if bits are set
+	beq _bit_set
 	mov r0, #1
-
+	b end
+_bit_set:
+	mov r0, #0
+	b end
 end:
 	mov r7, #1
 	swi 0
