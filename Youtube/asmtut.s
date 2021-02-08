@@ -1,16 +1,16 @@
+@block tansfer load multiple words in register. align 2 byte alignment
 .global _start
 
 _start:
-	mov r0, #0
-	mov r1, #1
-	b _continue_loop
+	adr r3, =numbers
+	ldmia r3, {r5-r8}
+	mov r0, r6
+	
 
-_loop:
-	add r0, r0, r1
-
-_continue_loop:
-	cmp r0, #9
-	ble _loop
 end:
-	mov r7, #1
+	mov r1, #1
 	swi 0
+
+.align 2
+numbers:
+	.word 1, 2, 3, 4
