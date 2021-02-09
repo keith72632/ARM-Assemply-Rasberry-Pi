@@ -2,13 +2,14 @@
 .global _start
 
 _start:
-	adr r3, =numbers
+	adr r3, numbers
+	//load multiple increment after
 	ldmia r3, {r5-r8}
 	mov r0, r6
 	
 
 end:
-	mov r1, #1
+	mov r7, #1
 	swi 0
 
 .align 2
