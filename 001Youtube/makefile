@@ -8,3 +8,5 @@ debug:
 	as -g -o asmtut.o asmtut.s
 	ld -o asmtut asmtut.o
 	gdb asmtut	
+gcc:
+	gcc -o asmtut asmtut.s

@@ -1,38 +1,25 @@
 .data
 .balign 4
-@asciz adds zero byte at the end of the string
-question: .asciz "whats is you favorite number?"
+array:
+	.word 1
+	.word 2
+	.word 3
+	.word 4
 
-.balign 4
-message: .asciz "%d is a great number\n"
+.global _start
+_start:
+	ldr r1, =array
+	stmdb sp!, {r3-r7}
+	ldr r3, [r1, #0]
+	ldr r4, [r1, #4]
+	ldr r5, [r1, #8]
+	ldr r6, [r1, #12]
+	ldr r7, [r1, #16]
 
-.balign 4
-pattern: .asciz "%d"
-
-.balign 4
-number: .word 0
-
-.balign 4
-lr_bu: .word 0
-@link pointer backup
-
-.text
-.global main
-
-main:
-	ldr r1, addr_lr_bu
-
-
-addr_question: .word question
-addr_message: .word message
-addr_pattern: .word pattern
-addr_number: .word number
-addr_lr_bu: .word lr_bu
-
-.global printf
-.global scanf
-
-end:
+	ldmia sp!, {r3, r7}
+	add r0, r3, r4
+	add r0, r0, r5
+	add r0, r0, r6
+	add r0, r0, r7
 	mov r7, #1
 	swi 0
-
